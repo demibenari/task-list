@@ -1,0 +1,11 @@
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Tasks to Do</div>
+    <!-- List group -->
+    <ol id="todo"  class="list-group">
+        <li ng-show="!task.complete" ng-repeat="task in tasksCtrl.list | orderBy:'-dueDate'">
+            <input type="checkbox" ng-model="task.complete">
+            <b>{{task.name}}</b> {{task.assignee}}: {{task.description}} - {{task.dueDate | date: 'dd/MM/yyyy @ h:mma'}}
+        </li>
+    </ol>
+</div>
