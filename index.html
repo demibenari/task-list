@@ -4,60 +4,58 @@
     </head>
 
     <body>
+        <div ng-controller="TaskListController as tasksCtrl">
+            <div class="panel panel-default">
+                <div class="panel-heading">Tasks to Do</div>
+                <!-- List group -->
+                <ol id="todo"  class="list-group">
+                    <li ng-show="!task.complete" ng-repeat="task in taskList | orderBy:'-dueDate'">
+                        <input type="checkbox" ng-model="task.complete">
+                        <b>{{task.name}}</b> {{task.assignee}}: {{task.description}} - {{task.dueDate | date: 'dd/MM/yyyy @ h:mma'}}
+                    </li>
+                </ol>
+            </div>
 
-    <div ng-controller="TaskListController as tasksCtrl">
-        <div class="panel panel-default">
-            <div class="panel-heading">Tasks to Do</div>
-            <!-- List group -->
-            <ol id="todo"  class="list-group">
-                <li ng-show="!task.complete" ng-repeat="task in tasksCtrl.list | orderBy:'-dueDate'">
-                    <input type="checkbox" ng-model="task.complete">
-                    <b>{{task.name}}</b> {{task.assignee}}: {{task.description}} - {{task.dueDate | date: 'dd/MM/yyyy @ h:mma'}}
-                </li>
-            </ol>
+            <div class="panel panel-default">
+                <div class="panel-heading">Complete Tasks</div>
+                <!-- List group -->
+                <ol id="complete"  class="list-group">
+                    <li ng-show="task.complete" ng-repeat="task in taskList | orderBy:'-dueDate'">
+                        <input type="checkbox" ng-model="task.complete">
+                        <b>{{task.name}}</b> {{task.assignee}}: {{task.description}} - {{task.dueDate | date: 'dd/MM/yyyy @ h:mma'}}
+                    </li>
+                </ol>
+            </div>
         </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">Complete Tasks</div>
-            <!-- List group -->
-            <ol id="complete"  class="list-group">
-                <li ng-show="task.complete" ng-repeat="task in tasksCtrl.list | orderBy:'-dueDate'">
-                    <input type="checkbox" ng-model="task.complete">
-                    <b>{{task.name}}</b> {{task.assignee}}: {{task.description}} - {{task.dueDate | date: 'dd/MM/yyyy @ h:mma'}}
-                </li>
-            </ol>
-        </div>
-    </div>
-
-    <form name="addTaskForm" ng-controller="AddTaskController as addTaskListCtrl"
-                             ng-submit="addTaskListCtrl.addTask()">
-        <div>
-            <button type="button" class="btn btn-default" ng-click="isAddTaskShown=!isAddTaskShown">Add Task</button>
-        </div>
-        <div ng-show="isAddTaskShown">
-            <h4>Submit a Task</h4>
-            <fieldset class="form-group">
-                <input ng-model="addTaskListCtrl.task.name" class="form-control"
-                       placeholder="Name" title="Name"/>
-            </fieldset>
-            <fieldset class="form-group">
-                <input ng-model="addTaskListCtrl.task.assignee" class="form-control"
-                       placeholder="assignee" title="assignee"/>
-            </fieldset>
-            <fieldset class="form-group">
-                <input ng-model="addTaskListCtrl.task.description" class="form-control"
-                       placeholder="description" title="description" />
-            </fieldset>
-            <fieldset class="form-group">
-                <input ng-model="addTaskListCtrl.task.date" class="form-control"
-                       placeholder="date" title="date" />
-            </fieldset>
-            <fieldset class="form-group">
-                <input type="submit" class="btn btn-primary pull-right" value="Submit Task" />
-            </fieldset>
-        </div>
-    </form>
-
+        <form name="addTaskForm" ng-controller="AddTaskController as addTaskListCtrl"
+                                 ng-submit="addTaskListCtrl.addTask()">
+            <div>
+                <button type="button" class="btn btn-default" ng-click="isAddTaskShown=!isAddTaskShown">Add Task</button>
+            </div>
+            <div ng-show="isAddTaskShown">
+                <h4>Submit a Task</h4>
+                <fieldset class="form-group">
+                    <input ng-model="addTaskListCtrl.task.name" class="form-control"
+                           placeholder="Name" title="Name"/>
+                </fieldset>
+                <fieldset class="form-group">
+                    <input ng-model="addTaskListCtrl.task.assignee" class="form-control"
+                           placeholder="assignee" title="assignee"/>
+                </fieldset>
+                <fieldset class="form-group">
+                    <input ng-model="addTaskListCtrl.task.description" class="form-control"
+                           placeholder="description" title="description" />
+                </fieldset>
+                <fieldset class="form-group">
+                    <input ng-model="addTaskListCtrl.task.date" class="form-control"
+                           placeholder="date" title="date" />
+                </fieldset>
+                <fieldset class="form-group">
+                    <input type="submit" class="btn btn-primary pull-right" value="Submit Task" />
+                </fieldset>
+            </div>
+        </form>
 
     <!-- Scripts and Libraries -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
