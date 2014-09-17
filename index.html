@@ -2,8 +2,8 @@
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     </head>
-
     <body ng-controller="TaskListController as tasksCtrl">
+        <!-- Tasks Lists View -->
         <div>
             <div class="panel panel-default">
                 <div class="panel-heading">Tasks to Do</div>
@@ -29,16 +29,15 @@
                 </ol>
             </div>
         </div>
+
+        <!-- Edit Task View -->
+
         <div ng-show="isEditTaskShown">
             <div>
-                <button type="button" class="btn btn-default" ng-click="tasksCtrl.saveChangesOfTask()">Save Changes</button>
+                <button type="button" class="btn btn-default" ng-click="tasksCtrl.saveChangesOfTask()">Close Edit</button>
             </div>
             <div>
                 <h4>Edit a Task</h4>
-                <fieldset class="form-group">
-                    <input ng-model="tasksCtrl.selectedTask.name" class="form-control"
-                           placeholder="Name" title="Name"/>
-                </fieldset>
                 <fieldset class="form-group">
                     <input ng-model="tasksCtrl.selectedTask.assignee" class="form-control"
                            placeholder="assignee" title="assignee"/>
@@ -54,6 +53,7 @@
             </div>
         </div>
 
+        <!-- Add New Task View form -->
 
         <form name="addTaskForm" ng-controller="AddTaskController as addTaskListCtrl"
                                  ng-submit="addTaskListCtrl.addTask()">
@@ -62,10 +62,6 @@
             </div>
             <div ng-show="isAddTaskShown">
                 <h4>Submit a Task</h4>
-                <fieldset class="form-group">
-                    <input ng-model="addTaskListCtrl.task.name" class="form-control"
-                           placeholder="Name" title="Name"/>
-                </fieldset>
                 <fieldset class="form-group">
                     <input ng-model="addTaskListCtrl.task.assignee" class="form-control"
                            placeholder="assignee" title="assignee"/>
@@ -84,11 +80,12 @@
             </div>
         </form>
 
-    <!-- Scripts and Libraries -->
+    <!-- Scripts and Libraries decelerations  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
+    <!-- All of the dependent files are included because there is no web server to bring the resources from -->
     <script type="text/javascript" src="app/app.js"></script>
     <script type="application/json" src="app/data/assignments.json"></script>
     <script type="text/javascript" src="app/services/dataService.js"></script>

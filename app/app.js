@@ -1,5 +1,3 @@
 (function(){
-    var app = angular.module('tasksList', []);
-
-
+    angular.module('tasksList', []);
 })();
