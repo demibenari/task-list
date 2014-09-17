@@ -2,12 +2,7 @@
  *
  */
 
-angular.module('tasksList').controller("AddTaskController", ['$scope', function($scope){
-    // Saving the reference to the controller by a variable
-//    var addTaskController = this;
-//    addTaskController.list = dataService.data;
-
-
+angular.module('tasksList').controller("AddTaskController", ['$scope','dataService', function($scope,dataService){
     // Saving the reference to the controller by a variable
     var addTaskCtrl = this;
 
@@ -16,9 +11,13 @@ angular.module('tasksList').controller("AddTaskController", ['$scope', function(
     $scope.isAddTaskShown = false;
 
     addTaskCtrl.addTask = function() {
-       // alert(addTaskCtrl.task.name + " " + addTaskCtrl.task.assignee + " " + addTaskCtrl.task.description + " " + addTaskCtrl.task.date);
-        alert( $scope.taskList);
-        $scope.taskList.push(addTaskCtrl.task);
+        // TODO: do validation on the fields
+
+        dataService.addTask(addTaskCtrl.task);
+
+        addTaskCtrl.clearTask();
+
+        $scope.isAddTaskShown = false;
     };
 
     addTaskCtrl.clearTask = function() {

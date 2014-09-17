@@ -5,7 +5,11 @@
 * Should be replaced with some kind of access to a data service (Like a DataBase of some kind)
 * */
 
-angular.module('tasksList').service('dataService', function() {
+angular.module('tasksList').service('dataService', function($rootScope) {
+
+// Reading the file from even though i got it into the HTML was not possible this way,
+// There is the possibilty to use the local storage of HTML5 but it is still not like was asked in the exercise
+
 //    var data = JSON.parse('../data/assignments.json');
 
     var data = [
@@ -32,7 +36,19 @@ angular.module('tasksList').service('dataService', function() {
         }
     ];
 
+    var addTask = function(task) {
+        data.push(task);
+        $rootScope.$broadcast("listUpdated");
+    };
+
+    var editTask = function(index) {
+
+
+        $rootScope.$broadcast("listUpdated");
+    };
+
     return {
-        'data' : data
+        'data' : data,
+        'addTask' : addTask
     };
 });
