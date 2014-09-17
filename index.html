@@ -10,7 +10,7 @@
                 <!-- List group -->
                 <ol id="todo"  class="list-group">
                     <li ng-hide="task.complete" ng-repeat="task in tasksCtrl.taskList | orderBy:'-dueDate'"
-                                                ng-click="tasksCtrl.setSelectedItem($index)">
+                                                ng-click="tasksCtrl.setSelectedItem(task)">
                         <input type="checkbox" ng-model="task.complete">
                         <b>{{task.name}}</b> {{task.assignee}}: {{task.description}} - {{task.dueDate | date: 'dd/MM/yyyy @ h:mma'}}
                     </li>
@@ -22,7 +22,7 @@
                 <!-- List group -->
                 <ol id="complete"  class="list-group">
                     <li ng-show="task.complete" ng-repeat="task in tasksCtrl.taskList | orderBy:'-dueDate'"
-                                                ng-click="tasksCtrl.setSelectedItem($index)">
+                                                ng-click="tasksCtrl.setSelectedItem(task)">
                         <input type="checkbox" ng-model="task.complete">
                         <b>{{task.name}}</b> {{task.assignee}}: {{task.description}} - {{task.dueDate | date: 'dd/MM/yyyy @ h:mma'}}
                     </li>
@@ -48,7 +48,7 @@
                            placeholder="description" title="description" />
                 </fieldset>
                 <fieldset class="form-group">
-                    <input ng-model="tasksCtrl.selectedTask.date" class="form-control"
+                    <input ng-model="tasksCtrl.selectedTask.dueDate" class="form-control"
                            placeholder="date" title="date" />
                 </fieldset>
             </div>
@@ -75,7 +75,7 @@
                            placeholder="description" title="description" />
                 </fieldset>
                 <fieldset class="form-group">
-                    <input ng-model="addTaskListCtrl.task.date" class="form-control"
+                    <input ng-model="addTaskListCtrl.task.dueDate" class="form-control"
                            placeholder="date" title="date" />
                 </fieldset>
                 <fieldset class="form-group">

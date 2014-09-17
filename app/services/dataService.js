@@ -41,14 +41,14 @@ angular.module('tasksList').service('dataService', function($rootScope) {
         $rootScope.$broadcast("listUpdated");
     };
 
-    var editTask = function(index) {
-
-
+    var updateTask = function(task) {
+        data[task] = task;
         $rootScope.$broadcast("listUpdated");
     };
 
     return {
         'data' : data,
-        'addTask' : addTask
+        'addTask' : addTask,
+        'updateTask' : updateTask
     };
 });
